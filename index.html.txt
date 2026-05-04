@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мона Киса</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0010;
+            color: #e8d5ff;
+            font-family: 'Crimson Text', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at top, #1a0030 0%, transparent 60%),
+                radial-gradient(ellipse at bottom, #0d001a 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(10,0,16,0.9), transparent);
+            border-bottom: 1px solid rgba(150,0,255,0.2);
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.2rem;
+            color: #c77dff;
+            text-shadow: 0 0 10px #7b2fff;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c77dff;
+            text-decoration: none;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #c77dff;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 5rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 
+                0 0 20px #9d00ff,
+                0 0 40px #7b2fff,
+                0 0 80px #4a00b4;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #9d00ff, 0 0 40px #7b2fff, 0 0 80px #4a00b4; }
+            100% { text-shadow: 0 0 30px #c77dff, 0 0 60px #9d00ff, 0 0 100px #7b2fff; }
+        }
+
+        .hero-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            color: #c77dff;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #9d00ff, transparent);
+            margin: 20px auto;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #d8b4ff;
+            max-width: 600px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .btn-listen {
+            margin-top: 40px;
+            padding: 15px 50px;
+            background: transparent;
+            border: 1px solid #9d00ff;
+            color: #c77dff;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-listen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(157,0,255,0.2), transparent);
+            transition: left 0.4s;
+        }
+
+        .btn-listen:hover::before {
+            left: 100%;
+        }
+
+        .btn-listen:hover {
+            background: rgba(157,0,255,0.2);
+            box-shadow: 0 0 20px rgba(157,0,255,0.5);
+            color: #fff;
+        }
+
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2rem;
+            color: #c77dff;
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 0 0 15px #7b2fff;
+            letter-spacing: 4px;
+        }
+
+        .about-block {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-photo {
+            width: 280px;
+            height: 380px;
+            border: 1px solid #9d00ff;
+            box-shadow: 0 0 30px rgba(157,0,255,0.4);
+            background: linear-gradient(135deg, #1a0030, #0a0010);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a0080;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            flex-shrink: 0;
+        }
+
+        .about-text {
+            max-width: 500px;
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #d8b4ff;
+            font-style: italic;
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .music-card {
+            border: 1px solid rgba(157,0,255,0.3);
+            padding: 30px;
+            background: rgba(157,0,255,0.05);
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .music-card:hover {
+            border-color: #9d00ff;
+            box-shadow: 0 0 20px rgba(157,0,255,0.3);
+            transform: translateY(-5px);
+        }
+
+        .music-card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .music-card-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 0.9rem;
+            color: #c77dff;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .music-card-desc {
+            font-size: 1rem;
+            color: #a080c0;
+            font-style: italic;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 12px 35px;
+            border: 1px solid rgba(157,0,255,0.4);
+            color: #c77dff;
+            text-decoration: none;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: rgba(157,0,255,0.2);
+            box-shadow: 0 0 15px rgba(157,0,255,0.4);
+            color: #fff;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(157,0,255,0.2);
+            color: #4a0080;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .rune-decor {
+            font-size: 1.5rem;
+            color: rgba(157,0,255,0.4);
+            letter-spacing: 10px;
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars" id="stars"></div>
+
+    <nav>
+        <div class="nav-logo">✦ MONA KISA ✦</div>
+        <ul class="nav-links">
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#music">Музыка</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title">MONA KISA</div>
+        <div class="divider"></div>
+        <div class="hero-subtitle">✦ Тёмная музыкальная фантазия ✦</div>
+        <div class="hero-desc">
+            Где магия встречается со звуком. Где тьма становится мелодией.
+        </div>
+        <a href="#music" class="btn-listen">✦ Слушать ✦</a>
+    </section>
+
+    <span class="rune-decor">ᚨ ᚱ ᚢ ᚾ ᚨ</span>
+
+    <section class="section" id="about">
+        <div class="section-title">✦ Обо мне ✦</div>
+        <div class="about-block">
+            <div class="about-photo">[ ФОТО ]</div>
+            <div class="about-text">
+                Я — Мона Киса.<br><br>
+                Моя музыка рождается из тьмы и света, из древних легенд и современных ритмов.
+                Каждый трек — это заклинание. Каждая мелодия — портал в другой мир.<br><br>
+                Добро пожаловать в мою вселенную.
+            </div>
+        </div>
+    </section>
+
+    <span class="rune-decor">⋆ ✦ ⋆ ✦ ⋆</span>
+
+    <section class="section" id="music">
+        <div class="section-title">✦ Музыка ✦</div>
+        <div class="music-grid">
+            <div class="music-card">
+                <div class="music-card-icon">🌙</div>
+                <div class="music-card-title">Трек 1</div>
+                <div class="music-card-desc">Название трека</div>
+            </div>
+            <div class="music-card">
+                <div class="music-card-icon">🔮</div>
+                <div class="music-card-title">Трек 2</div>
+                <div class="music-card-desc">Название трека</div>
+            </div>
+            <div class="music-card">
+                <div class="music-card-icon">⚡</div>
+                <div class="music-card-title">Трек 3</div>
+                <div class="music-card-desc">Название трека</div>
+            </div>
+        </div>
+    </section>
+
+    <span class="rune-decor">ᚨ ᚱ ᚢ ᚾ ᚨ</span>
+
+    <section class="section" id="contact">
+        <div class="section-title">✦ Соц сети ✦</div>
+        <div class="social-links">
+            <a href="#" class="social-btn">VK</a>
+            <a href="#" class="social-btn">Telegram</a>
+            <a href="#" class="social-btn">YouTube</a>
+            <a href="#" class="social-btn">Instagram</a>
+        </div>
+    </section>
+
+    <footer>
+        ✦ MONA KISA © 2024 ✦ Все права защищены ✦
+    </footer>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            const size = Math.random() * 3;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+
+</body>
+</html>
